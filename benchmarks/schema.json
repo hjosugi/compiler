@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hjosugi/compiler/blob/main/benchmarks/schema.json",
+  "title": "Compiler Atlas benchmark result",
+  "type": "object",
+  "required": ["schema", "environment", "configuration", "results"],
+  "properties": {
+    "schema": {"const": "compiler-atlas.benchmark/v1"},
+    "environment": {"type": "object"},
+    "configuration": {"type": "object"},
+    "results": {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": false
+}

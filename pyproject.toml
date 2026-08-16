@@ -1,0 +1,36 @@
+[project]
+name = "compiler-backend-atlas"
+version = "1.0.0"
+description = "A from-zero compiler course, typed SSA IR lab, LLVM backend atlas, and KofuMini compiler"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Education",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Software Development :: Compilers",
+]
+
+[project.scripts]
+kofuc = "kofumini.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["tutorial"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B", "UP", "RUF"]

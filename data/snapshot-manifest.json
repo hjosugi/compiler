@@ -1,0 +1,39 @@
+{
+  "schema": "compiler-atlas.research-snapshot/v1",
+  "captured_at": "2026-08-16T02:30:57Z",
+  "github_api_queries": [
+    "GET /orgs/llvm/repos?per_page=100&type=all",
+    "GET /repos/llvm/llvm-project",
+    "GET /repos/llvm/llvm-project/releases/tags/llvmorg-22.1.8",
+    "GET /repos/llvm/llvm-project/releases/tags/llvmorg-23.1.0-rc3"
+  ],
+  "llvm_organization": {
+    "repository_count": 44,
+    "dataset": "llvm_org_repositories_2026-08-16.tsv"
+  },
+  "llvm_project": {
+    "default_branch": "main",
+    "stars": 39815,
+    "forks": 18249,
+    "repository_size_kb": 4266454,
+    "open_issues_count_including_pull_requests": 38205,
+    "pushed_at": "2026-08-16T01:37:57Z"
+  },
+  "llvm_releases": {
+    "stable": {
+      "tag": "llvmorg-22.1.8",
+      "published_at": "2026-06-16T13:48:55Z",
+      "prerelease": false
+    },
+    "candidate": {
+      "tag": "llvmorg-23.1.0-rc3",
+      "published_at": "2026-08-12T05:01:22Z",
+      "prerelease": true
+    }
+  },
+  "kofun_reference": {
+    "repository": "kofun-lang/kofun",
+    "commit": "075fbb241367c27863c74f3884989ba7ddbbfa5b",
+    "committed_at": "2026-08-15T23:10:17Z"
+  }
+}

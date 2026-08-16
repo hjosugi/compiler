@@ -1,0 +1,8 @@
+fn forty_one() {
+    return 41;
+}
+
+fn main() {
+    print(1 + forty_one());
+    return 0;
+}

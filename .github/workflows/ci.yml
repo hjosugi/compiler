@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.14"]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Check frontend, KIR, tutorial, labs, benchmark helpers, and docs
+        run: make check-python
+
+  llvm:
+    name: LLVM IR and native differential test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install LLVM tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes clang llvm
+      - name: Require LLVM assembly verification and native execution
+        run: make check-llvm
+      - name: Run benchmark protocol smoke test
+        run: make benchmark-smoke

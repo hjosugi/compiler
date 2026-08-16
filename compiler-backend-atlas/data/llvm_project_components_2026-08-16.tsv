@@ -1,0 +1,27 @@
+path	role
+llvm	Core IR, analyses, optimization passes, target-independent and target-specific code generation, MC and tools
+clang	C, C++, Objective-C and Objective-C++ frontend
+clang-tools-extra	clangd, clang-tidy and additional source tools
+mlir	Multi-Level IR framework, dialects, conversion and execution infrastructure
+lld	ELF, COFF, Mach-O, MinGW and WebAssembly linker implementations
+lldb	Debugger
+compiler-rt	Sanitizers, profile runtime and low-level compiler runtime support
+libc	LLVM C standard library implementation
+libcxx	C++ standard library
+libcxxabi	C++ ABI runtime
+libunwind	Stack unwinding runtime
+llvm-libgcc	LLVM-side libgcc compatibility work
+orc-rt	ORC JIT runtime
+bolt	Post-link binary optimizer
+polly	Polyhedral loop and data-locality optimizer
+flang	Fortran frontend
+flang-rt	Fortran runtime
+openmp	OpenMP runtime and tooling
+offload	Heterogeneous offload infrastructure
+libclc	OpenCL C builtins for accelerator targets
+libsycl	SYCL-related library work
+cross-project-tests	Integration tests across LLVM subprojects
+runtimes	Unified runtime build entrypoint
+third-party	Vendored third-party dependencies
+utils	Repository-wide utilities
+

@@ -1,0 +1,46 @@
+repository	category	status	description
+llvm/llvm-project	core	active	LLVM, Clang, LLD, LLDB, MLIR, runtimes and related toolchain projects
+llvm/circt	mlir-ecosystem	active	Circuit IR Compilers and Tools
+llvm/torch-mlir	mlir-ecosystem	incubator	PyTorch and ONNX ingress into MLIR
+llvm/Polygeist	mlir-ecosystem	active	C and C++ frontend that raises programs into MLIR
+llvm/lighthouse	mlir-ecosystem	active	Reference MLIR ingress, scheduling and runtime pipelines
+llvm/eudsl	mlir-ecosystem	alpha	Embedded DSL and Python tooling for MLIR and TableGen
+llvm/mlir-tcp	mlir-ecosystem	wip	Tensor Compute Primitives mid-level IR
+llvm/clangir	mlir-ecosystem	archived	Former ClangIR incubator, integrated into llvm-project
+llvm/mlir-www	documentation	active	MLIR website
+llvm/vscode-mlir	editor	active	MLIR VS Code integration
+llvm/torch-mlir-release	release	active	Automated Torch-MLIR releases
+llvm/llvm-test-suite	quality	active	Compiler performance and correctness workloads
+llvm/llvm-zorg	quality	active	Buildbot and testing infrastructure
+llvm/llvm-lnt	quality	active	Nightly performance tracking infrastructure
+llvm/bolt-test-suite	quality	active	BOLT test suite
+llvm/offload-test-suite	quality	experimental	Offload and HLSL runtime test suite
+llvm/offload-golden-images	quality	active	Golden images for rendering tests
+llvm/actions	infrastructure	active	Reusable GitHub Actions
+llvm/llvm-wgs	governance	active	LLVM working groups documentation and tracking
+llvm/wg-hlsl	governance	active	HLSL working group
+llvm/llvm-iwg	governance	archived	Infrastructure working group
+llvm/clangd-www	documentation	active	clangd website
+llvm/llvm-www	documentation	active	LLVM website
+llvm/www-new	documentation	test	New website test repository
+llvm/www-template	documentation	active	Website template
+llvm/llvm-blog-www	documentation	active	LLVM Project blog
+llvm/llvm-foundation-www	documentation	active	LLVM Foundation website
+llvm/llvm-www-pubs	documentation	active	LLVM publications website data
+llvm/www-releases	release	active	Published LLVM release website
+llvm/circt-www	documentation	active	CIRCT website
+llvm/Community.o	community	active	Community website and resources
+llvm/vscode-lldb	editor	active	LLDB VS Code integration
+llvm/llvm.vim	editor	active	LLVM Vim filetype support
+llvm/llvm-project-release-prs	release	active	Release backport pull-request testing
+llvm/llvm-project-staging	archive	archived	Staging for large contributions
+llvm/llvm-project-legacy-branches	archive	archived	Legacy SVN branches and tags
+llvm/llvm-archive	archive	archived	Old and discontinued LLVM projects
+llvm/llvm-bugzilla-archive	archive	archived	Historical Bugzilla archive
+llvm/bugzilla2gitlab	archive	archived	Issue migration tool
+llvm/phabricator	archive	archived	Historical code-review platform mirror
+llvm/llvm-security-repo	security	test	Security issue workflow test repository
+llvm/temp-issue-tester	infrastructure	test	GitHub issue feature tests
+llvm/llvm-admin	administration	active	Administrative scripts
+llvm/elekto-config	governance	active	Election tooling configuration
+

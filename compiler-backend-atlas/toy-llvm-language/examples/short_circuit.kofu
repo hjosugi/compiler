@@ -1,0 +1,13 @@
+fn side_effect() -> Bool {
+    print(999);
+    return true;
+}
+
+fn main() -> Int {
+    let skipped: Bool = false && side_effect();
+    let also_skipped: Bool = true || side_effect();
+    let answer: Int = if skipped || also_skipped { 42 } else { 0 };
+    print(answer);
+    return 0;
+}
+

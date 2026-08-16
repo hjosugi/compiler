@@ -1,0 +1,15 @@
+# Collatz: number of steps for 27 to reach 1 (answer: 111)
+fn steps(n) {
+  let c = 0;
+  while (n != 1) {
+    if (n % 2 == 0) { n = n / 2; }
+    else { n = 3 * n + 1; }
+    c = c + 1;
+  }
+  return c;
+}
+
+fn main() {
+  print(steps(27));
+  return 0;
+}

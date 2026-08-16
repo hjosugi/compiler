@@ -1,0 +1,8 @@
+# stage2: variables, while, if, block scope
+let n = 5;
+while (n > 0) {
+  let msg = n * 10;      # block-scoped: recreated each iteration
+  print(msg);
+  n = n - 1;
+}
+if (n == 0) { print(999); } else { print(-1); }

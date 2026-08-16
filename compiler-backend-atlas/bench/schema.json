@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/compiler-backend-atlas/benchmark-v1.schema.json",
+  "title": "Compiler Backend Atlas benchmark result",
+  "type": "object",
+  "required": ["schema", "environment", "configuration", "results"],
+  "properties": {
+    "schema": {"const": "compiler-backend-atlas.benchmark/v1"},
+    "environment": {"type": "object"},
+    "configuration": {"type": "object"},
+    "results": {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": false
+}
+

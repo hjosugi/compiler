@@ -1,0 +1,10 @@
+fn max(left: Int, right: Int) -> Int {
+    return if left > right { left } else { right };
+}
+
+fn main() -> Int {
+    let answer: Int = max(40, 42);
+    print(answer);
+    return 0;
+}
+

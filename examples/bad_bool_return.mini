@@ -1,0 +1,5 @@
+# stage4 should reject this: 'b' is bool, return needs int
+fn main() {
+  let b = 1 < 2;
+  return b;
+}

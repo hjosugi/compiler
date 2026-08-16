@@ -1,0 +1,15 @@
+fn square(value: Int) -> Int {
+    return value * value;
+}
+
+fn is_large(value: Int) -> Bool {
+    return value >= 100;
+}
+
+fn main() -> Int {
+    let value: Int = square(12);
+    let selected: Int = if is_large(value) { value } else { 0 };
+    print(selected);
+    return 0;
+}
+

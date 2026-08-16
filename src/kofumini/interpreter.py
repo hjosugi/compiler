@@ -3,10 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from .errors import RuntimeTrap
-from .kir import Instruction, KIRFunction, KIRModule
-
-I64_MIN = -(1 << 63)
-I64_MAX = (1 << 63) - 1
+from .kir import Instruction, KIRFunction, KIRModule, verify
+from .semantics import I64_MAX, I64_MIN
 
 
 @dataclass(slots=True)
@@ -23,16 +21,22 @@ class Interpreter:
     functions: dict[str, KIRFunction] = field(init=False)
 
     def __post_init__(self) -> None:
+        verify(self.module)
         self.functions = {function.name: function for function in self.module.functions}
 
     def run_main(self) -> ExecutionResult:
+        self.output.clear()
+        if "main" not in self.functions:
+            raise RuntimeTrap("runtime trap: module has no main function")
         value = self.call("main", (), 0)
         return ExecutionResult(int(value), "".join(self.output))
 
     def call(self, name: str, args: tuple[int | bool, ...], depth: int) -> int | bool:
         if depth > self.max_call_depth:
             raise RuntimeTrap("runtime trap: maximum call depth exceeded")
-        function = self.functions[name]
+        function = self.functions.get(name)
+        if function is None:
+            raise RuntimeTrap(f"runtime trap: unknown function {name}")
         if len(args) != len(function.params):
             raise RuntimeTrap(f"runtime trap: wrong argument count for {name}")
         values: dict[str, int | bool] = {

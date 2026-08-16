@@ -102,6 +102,7 @@ class FunctionLowerer:
                 result = self.emit("bool.not", "Bool", args=(operand,))
             else:
                 zero = self.emit("const", "Int", attrs={"value": 0})
+                assert zero is not None
                 result = self.emit("isub.checked", "Int", args=(zero, operand))
         elif isinstance(expr, ast.BinaryExpr):
             if expr.op in {"&&", "||"}:

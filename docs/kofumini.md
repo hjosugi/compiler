@@ -14,6 +14,8 @@ python3 -m kofumini.cli llvm examples/kofumini/choose.kofu
 python3 -m kofumini.cli run examples/kofumini/choose.kofu
 ```
 
+各commandは観察対象のphaseまでだけ実行します。`tokens`はlexer、`ast`はparser、`check`はtype checkerで停止し、`kir`/`run`はloweringまで、`llvm`/`build`はLLVM emitterまで進みます。前段の表示に後段の制約を誤って混ぜません。
+
 Sourceの読む順:
 
 1. `src/kofumini/tokens.py`, `lexer.py`
@@ -24,4 +26,4 @@ Sourceの読む順:
 6. `src/kofumini/llvm_emitter.py`
 7. `src/kofumini/compiler.py`, `cli.py`
 
-Examplesには関数、if/phi、短絡評価、型error、overflow trapがあります。IdentifierはKofuMini v1ではASCIIです。`tests/`はfrontend、canonical KIR/hash、SSA dominance verifier、reference結果、LLVM IR/native経路を検査します。
+Examplesには関数、if/phi、短絡評価、型error、signed i64境界、overflow trapがあります。IdentifierはKofuMini v1ではASCIIです。`tests/`はfrontend、phase-aware CLI、canonical KIR/hash、strict SSA verifier、reference結果、LLVM IR/native経路を検査します。

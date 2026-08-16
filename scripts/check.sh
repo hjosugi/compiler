@@ -40,7 +40,7 @@ fi
 tmp_dir=$(mktemp -d)
 trap 'rm -rf "$tmp_dir"' EXIT HUP INT TERM
 
-for name in hello choose functions short_circuit overflow; do
+for name in hello choose functions short_circuit overflow i64_min; do
     python3 -m kofumini.cli llvm \
         "$project_dir/examples/kofumini/$name.kofu" \
         -o "$tmp_dir/$name.ll"
@@ -48,12 +48,14 @@ for name in hello choose functions short_circuit overflow; do
     opt -passes=verify -disable-output "$tmp_dir/$name.bc"
 done
 
-python3 -m kofumini.cli build \
-    "$project_dir/examples/kofumini/choose.kofu" \
-    -O2 -o "$tmp_dir/choose"
-"$tmp_dir/choose" > "$tmp_dir/native.stdout"
-python3 -m kofumini.cli run \
-    "$project_dir/examples/kofumini/choose.kofu" > "$tmp_dir/reference.stdout"
-cmp "$tmp_dir/reference.stdout" "$tmp_dir/native.stdout"
+for name in hello choose functions short_circuit i64_min; do
+    python3 -m kofumini.cli build \
+        "$project_dir/examples/kofumini/$name.kofu" \
+        -O2 -o "$tmp_dir/$name"
+    "$tmp_dir/$name" > "$tmp_dir/$name.native.stdout"
+    python3 -m kofumini.cli run \
+        "$project_dir/examples/kofumini/$name.kofu" > "$tmp_dir/$name.reference.stdout"
+    cmp "$tmp_dir/$name.reference.stdout" "$tmp_dir/$name.native.stdout"
+done
 
 echo "PASS: Python and LLVM/native checks"

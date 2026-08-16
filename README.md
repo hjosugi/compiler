@@ -114,7 +114,7 @@ LLVMは型検査、ownership、effect、generic strategy、言語ABIそのもの
 - Markdownのlocal linkと旧directory参照
 - 利用可能なら`llvm-as`、`opt`、Clang nativeとのdifferential test
 
-CIではPython 3.11/3.14のpure-Python gateと、LLVM toolchainを導入するnative gateを分離します。skipは成功に偽装せず、`make check-llvm`ではtool不足をfailureにします。
+`python3 -m pip install -e ".[dev]"`後の`make lint`は、pin済みRuffによるformat/lintとMypyによるproduction compilerの型検査を実行します。CIではPython 3.11/3.14のpure-Python・静的検査gateと、LLVM toolchainを導入するnative gateを分離します。skipは成功に偽装せず、`make check-llvm`ではtool不足をfailureにします。
 
 ## 調査範囲と限界
 
@@ -124,8 +124,8 @@ LLVM Organizationの全repository snapshotと`llvm-project`主要componentを収
 
 ## Release
 
-`make package VERSION=v1.0.1`はtracked treeから決定的な名前のZIPとSHA-256 fileを`dist/`へ生成し、CRCを検査します。GitHub ReleaseにはこのZIPとchecksumを添付します。2 fileを同じdirectoryへdownloadすれば、`sha256sum -c compiler-atlas-1.0.1.zip.sha256`で検証できます。
+`make package VERSION=v1.1.0`はtracked treeから決定的な名前のZIPとSHA-256 fileを`dist/`へ生成し、CRCを検査します。GitHub ReleaseにはこのZIPとchecksumを添付します。2 fileを同じdirectoryへdownloadすれば、`sha256sum -c compiler-atlas-1.1.0.zip.sha256`で検証できます。
 
 ## License
 
-このrepositoryには現時点で再利用licenseを設定していません。公開閲覧できること自体は、copy・改変・再配布の許諾を意味しません。
+Copyright (c) 2026 hjosugi. [MIT License](LICENSE)で利用できます。

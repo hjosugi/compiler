@@ -55,6 +55,23 @@ class CompilerPipelineTests(unittest.TestCase):
             Interpreter(compilation.kir).run_main()
         self.assertIn("llvm.sadd.with.overflow.i64", compilation.llvm_ir)
 
+    def test_signed_i64_min_literal_is_representable(self) -> None:
+        compilation = compile_example("i64_min.kofu")
+        result = Interpreter(compilation.kir).run_main()
+        self.assertEqual(result.stdout, "-9223372036854775808\n")
+        self.assertIn("-9223372036854775808", compilation.llvm_ir)
+
+    def test_literal_below_signed_i64_min_is_rejected(self) -> None:
+        source = "fn main() -> Int { return -9223372036854775809; }"
+        with self.assertRaisesRegex(TypeCheckError, "outside signed i64"):
+            compile_source(source)
+
+    def test_negating_signed_i64_min_traps(self) -> None:
+        source = "fn main() -> Int { let min: Int = -9223372036854775808; return -min; }"
+        compilation = compile_source(source)
+        with self.assertRaisesRegex(RuntimeTrap, "overflow"):
+            Interpreter(compilation.kir).run_main()
+
     def test_type_error_is_rejected_before_kir(self) -> None:
         path = EXAMPLES / "type_error.kofu"
         with self.assertRaisesRegex(TypeCheckError, "declared Int, got Bool"):
@@ -71,6 +88,13 @@ class CompilerPipelineTests(unittest.TestCase):
         self.assertNotIn("日本語", source_line)
         self.assertIn("\\22", source_line)
         self.assertIn("\\5C", source_line)
+
+    def test_interpreter_output_is_reset_between_runs(self) -> None:
+        interpreter = Interpreter(compile_example("hello.kofu").kir)
+        first = interpreter.run_main()
+        second = interpreter.run_main()
+        self.assertEqual(first.stdout, "42\n")
+        self.assertEqual(second.stdout, "42\n")
 
 
 @unittest.skipUnless(

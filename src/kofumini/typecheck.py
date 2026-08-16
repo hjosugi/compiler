@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 from . import ast_nodes as ast
 from .errors import TypeCheckError
+from .semantics import I64_MAX, I64_MIN
 
 
 @dataclass(frozen=True, slots=True)
@@ -43,7 +44,7 @@ def check(program: ast.Program) -> TypeInfo:
 
     def type_expr(expr: ast.Expr, env: dict[str, str], function_name: str) -> str:
         if isinstance(expr, ast.IntLiteral):
-            if expr.value > (1 << 63) - 1:
+            if expr.value < I64_MIN or expr.value > I64_MAX:
                 raise TypeCheckError(
                     f"type error in {function_name}: integer literal is outside signed i64"
                 )

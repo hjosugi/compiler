@@ -1,9 +1,12 @@
 [project]
 name = "compiler-backend-atlas"
-version = "1.0.1"
+version = "1.1.0"
 description = "A from-zero compiler course, typed SSA IR lab, LLVM backend atlas, and KofuMini compiler"
 readme = "README.md"
 requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "hjosugi" }]
 dependencies = []
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -14,11 +17,21 @@ classifiers = [
   "Topic :: Software Development :: Compilers",
 ]
 
+[project.optional-dependencies]
+dev = [
+  "mypy==2.3.1",
+  "ruff==0.16.3",
+]
+
 [project.scripts]
 kofuc = "kofumini.cli:main"
 
+[project.urls]
+Repository = "https://github.com/hjosugi/compiler"
+Issues = "https://github.com/hjosugi/compiler/issues"
+
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]

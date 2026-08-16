@@ -22,6 +22,10 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install project and pinned development checks
+        run: python -m pip install --disable-pip-version-check -e ".[dev]"
+      - name: Run formatting, lint, and type checks
+        run: make lint
       - name: Check frontend, KIR, tutorial, labs, benchmark helpers, and docs
         run: make check-python
       - name: Verify release artifact checksum contract

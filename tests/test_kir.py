@@ -5,6 +5,7 @@ import unittest
 
 from kofumini.compiler import compile_source
 from kofumini.errors import VerificationError
+from kofumini.interpreter import Interpreter
 from kofumini.kir import (
     Block,
     Instruction,
@@ -14,6 +15,8 @@ from kofumini.kir import (
     Terminator,
     verify,
 )
+from kofumini.llvm_emitter import emit_llvm
+from kofumini.semantics import I64_MAX
 
 
 class KIRSerializationTests(unittest.TestCase):
@@ -106,6 +109,32 @@ class KIRVerifierTests(unittest.TestCase):
         )
         with self.assertRaisesRegex(VerificationError, "expected Int"):
             verify(KIRModule([function]))
+
+    def test_unknown_instruction_attribute_is_rejected(self) -> None:
+        module = compile_source("fn main() -> Int { return 0; }").kir
+        module.functions[0].blocks[0].instructions[0].attrs["ignored"] = True
+        with self.assertRaisesRegex(VerificationError, "attribute schema mismatch"):
+            verify(module)
+
+    def test_out_of_range_i64_constant_is_rejected(self) -> None:
+        module = compile_source("fn main() -> Int { return 0; }").kir
+        module.functions[0].blocks[0].instructions[0].attrs["value"] = I64_MAX + 1
+        with self.assertRaisesRegex(VerificationError, "outside signed i64"):
+            verify(module)
+
+    def test_invalid_function_identifier_is_rejected(self) -> None:
+        module = compile_source("fn main() -> Int { return 0; }").kir
+        module.functions[0].name = "main injected"
+        with self.assertRaisesRegex(VerificationError, "invalid function name"):
+            verify(module)
+
+    def test_consumers_reverify_kir_at_their_boundary(self) -> None:
+        module = compile_source("fn main() -> Int { return 0; }").kir
+        module.functions[0].blocks[0].instructions[0].attrs["ignored"] = True
+        with self.assertRaises(VerificationError):
+            emit_llvm(module)
+        with self.assertRaises(VerificationError):
+            Interpreter(module)
 
 
 if __name__ == "__main__":

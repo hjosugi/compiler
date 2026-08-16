@@ -149,6 +149,10 @@ class Parser:
 
     def parse_prefix(self):
         token = self.current()
+        if token.kind == "MINUS" and self.tokens[self.index + 1].kind == "INT":
+            self.consume("MINUS")
+            literal = self.consume("INT")
+            return IntLiteral(-int(literal.text))
         if token.kind == "INT":
             self.index += 1
             return IntLiteral(int(token.text))

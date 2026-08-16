@@ -1,7 +1,7 @@
-.PHONY: check check-python check-llvm demo tutorial tokens ast kir llvm run native benchmark-smoke package clean
+.PHONY: check check-python check-llvm lint demo tutorial tokens ast kir llvm run native benchmark-smoke package clean
 
 PYTHON ?= python3
-VERSION ?= v1.0.0
+VERSION ?= v1.1.0
 PYTHONPATH := src
 EXAMPLE := examples/kofumini/choose.kofu
 export PYTHONPATH
@@ -14,6 +14,11 @@ check-python:
 
 check-llvm:
 	REQUIRE_LLVM=1 sh scripts/check.sh
+
+lint:
+	$(PYTHON) -m ruff check src tests benchmarks labs scripts
+	$(PYTHON) -m ruff format --check src tests benchmarks labs scripts
+	$(PYTHON) -m mypy src/kofumini
 
 demo:
 	sh scripts/demo.sh

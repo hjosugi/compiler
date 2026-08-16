@@ -53,7 +53,7 @@ KofuMiniのimplemented subsetは次です。
 | call | `call` | callee signatureとargument typeが一致 |
 | effect | `print.i64` | observable stdout effect。DCE禁止 |
 
-KIR verifierは、known type/op、terminator、到達可能性、SSA一意性、use-before-def、dominance、call signature、`phi` predecessor集合、return typeを検査します。不正KIRをLLVMへ渡してerrorの責任を後段へ移しません。
+KIR verifierは、known type/op、identifier grammar、signed i64 constant範囲、operationごとの正確な属性schema、terminator、到達可能性、SSA一意性、use-before-def、dominance、call signature、`phi` predecessor集合、return typeを検査します。未知属性はhashへ入る一方でconsumerに無視される意味論の分裂を起こすため、optionalと仕様化されていない限りfail closedです。LLVM emitterとreference interpreterもconsumer境界で再検証し、不正KIRの責任を後段へ移しません。
 
 ### 1.3 Trap、undefined behavior、poison
 

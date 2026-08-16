@@ -8,6 +8,7 @@
 2. source semantics、IR invariant、backend前提を混同しない。
 3. 時点依存の数値・version・repository一覧にはsnapshot日と一次資料を付ける。
 4. benchmarkはhardware、toolchain version、flags、raw outcomeを保存する。
-5. `make check`を実行し、LLVM必須の変更では`make check-llvm`も通す。
+5. `python3 -m pip install -e ".[dev]"`でpin済み開発toolを導入し、`make lint`と`make check`を実行する。
+6. LLVM必須の変更では`make check-llvm`も通す。
 
 新しいbackendを追加するときは、KIR reference interpreterとのdifferential testを先に用意してください。性能結果が不一致なら、そのsampleをperformance集計へ含めません。

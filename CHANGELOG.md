@@ -2,6 +2,11 @@
 
 このprojectは[Semantic Versioning](https://semver.org/)に従います。
 
+## 1.0.1 - 2026-08-16
+
+- GitHub ReleaseからZIPとchecksumを同じdirectoryへdownloadした直後に、`sha256sum -c`で検証できるようchecksum内のpathをbasenameへ修正。
+- CIにrelease artifactのchecksum回帰テストを追加。
+
 ## 1.0.0 - 2026-08-16
 
 - 5段階でlexer、parser、interpreter、type checker、bytecode VMを作るtutorialを統合。

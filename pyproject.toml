@@ -1,6 +1,6 @@
 [project]
 name = "compiler-backend-atlas"
-version = "1.0.0"
+version = "1.0.1"
 description = "A from-zero compiler course, typed SSA IR lab, LLVM backend atlas, and KofuMini compiler"
 readme = "README.md"
 requires-python = ">=3.11"

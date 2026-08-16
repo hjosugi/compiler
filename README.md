@@ -124,7 +124,7 @@ LLVM Organizationの全repository snapshotと`llvm-project`主要componentを収
 
 ## Release
 
-`make package VERSION=v1.0.0`はtracked treeから決定的な名前のZIPとSHA-256 fileを`dist/`へ生成し、CRCを検査します。GitHub ReleaseにはこのZIPとchecksumを添付します。
+`make package VERSION=v1.0.1`はtracked treeから決定的な名前のZIPとSHA-256 fileを`dist/`へ生成し、CRCを検査します。GitHub ReleaseにはこのZIPとchecksumを添付します。2 fileを同じdirectoryへdownloadすれば、`sha256sum -c compiler-atlas-1.0.1.zip.sha256`で検証できます。
 
 ## License
 

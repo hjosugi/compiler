@@ -26,7 +26,10 @@ fi
 name="compiler-atlas-${version#v}"
 mkdir -p dist
 git archive --format=zip --prefix="$name/" HEAD -o "dist/$name.zip"
-sha256sum "dist/$name.zip" > "dist/$name.zip.sha256"
+(
+    cd dist
+    sha256sum "$name.zip" > "$name.zip.sha256"
+)
 unzip -t "dist/$name.zip" >/dev/null
 
 printf '%s\n' "dist/$name.zip"

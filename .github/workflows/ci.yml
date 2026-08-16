@@ -24,6 +24,11 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Check frontend, KIR, tutorial, labs, benchmark helpers, and docs
         run: make check-python
+      - name: Verify release artifact checksum contract
+        run: |
+          make package VERSION=v0.0.0
+          cd dist
+          sha256sum -c compiler-atlas-0.0.0.zip.sha256
 
   llvm:
     name: LLVM IR and native differential test
